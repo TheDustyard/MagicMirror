@@ -1,4 +1,17 @@
 body{
+    margin: 0;
     background-color: black;
     color: white;
+    overflow: hidden;
+}
+
+noscript{
+    text-align: center;
+    margin: auto;
+}
+noscript meme{
+    display: block;
+    background-image: url(/media/nojs.png);
+    background-repeat: repeat;
+    height: 100vh;
 }

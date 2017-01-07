@@ -1,6 +1,6 @@
 ---
 memes: dank
-shades: on
+shades: put on
 cancer: cancerous
 ---
 

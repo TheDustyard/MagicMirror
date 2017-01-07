@@ -11,7 +11,7 @@ noscript{
 }
 noscript meme{
     display: block;
-    background-image: url(/media/nojs.png);
+    background-image: url(../media/nojs.png);
     background-repeat: repeat;
     height: 100vh;
 }

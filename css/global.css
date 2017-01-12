@@ -7,6 +7,10 @@ body{
     */
 }
 
+table{
+    border: 1px solid black;
+}
+
 noscript{
     text-align: center;
     margin: auto;

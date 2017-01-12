@@ -1,8 +1,10 @@
 body{
-    margin: 0;
+    margin: 10px;
+    /*
     background-color: black;
     color: white;
     overflow: hidden;
+    */
 }
 
 noscript{

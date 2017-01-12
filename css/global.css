@@ -9,6 +9,7 @@ body{
 
 table{
     width: 100%;
+    height: 20%;
     table-layout:fixed;
 }
 

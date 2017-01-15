@@ -45,7 +45,7 @@
             
             $(document).ready(function() {  
                 getWeather(); //Get the initial weather.
-                setInterval(getWeather, 10000); //Update the weather every 10 minutes.
+                setInterval(getWeather, 5000); //Update the weather every 10 minutes.
             });
             function getWeather(){
               $.simpleWeather({
@@ -54,9 +54,9 @@
                 success: function(weather) {
                     console.log("retrieved info");
                   html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-                  html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-                  html += '<li class="currently">'+weather.currently+'</li>';
-                  html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+//                  html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+//                  html += '<li class="currently">'+weather.currently+'</li>';
+//                  html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
                     
                     htmll = "";
                   for(var i=0;i<weather.forecast.length;i++) {
@@ -88,7 +88,7 @@
             <table>
                 <tr>
                     <td id="date"></td>
-                    <td id="weather">Hi</td>
+                    <td id="weather"></td>
                 </tr>
             </table>
             <table>

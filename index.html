@@ -45,13 +45,14 @@
             
             $(document).ready(function() {  
                 getWeather(); //Get the initial weather.
-                setInterval(getWeather, 100); //Update the weather every 10 minutes.
+                setInterval(getWeather, 10000); //Update the weather every 10 minutes.
             });
             function getWeather(){
               $.simpleWeather({
                 location: 'Wellesley, MA',
                 unit: 'f',
                 success: function(weather) {
+                    console.log("retrieved info");
                   html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
                   html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
                   html += '<li class="currently">'+weather.currently+'</li>';

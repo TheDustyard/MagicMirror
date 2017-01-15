@@ -5,64 +5,96 @@
         
         <link href="css/global.css" type="text/css" rel="stylesheet">
         <script src="js/jquery-3.1.1.js"></script>
+        <script src="js/jquery.simpleWeather.js"></script>
+        
         <script>
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('clock').innerHTML =
-    h + ":" + m + ":" + s;
-    
-    
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('clock').innerHTML =
+                h + ":" + m;
 
-var yyyy = today.getFullYear();
-if(dd<10){
-    dd='0'+dd;
-} 
-if(mm<10){
-    mm='0'+mm;
-} 
-var today = dd+'/'+mm+'/'+yyyy;
-document.getElementById("date").innerHTML = today;
 
-    var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
-</script>
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+
+            var yyyy = today.getFullYear();
+            if(dd<10){
+                dd='0'+dd;
+            } 
+            if(mm<10){
+                mm='0'+mm;
+            }  
+            var today = mm+'/'+dd+'/'+ yyyy;
+            document.getElementById("date").innerHTML = today;
+
+                var t = setTimeout(startTime, 500);
+            }
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                return i;
+            }
+            
+            // v3.1.0
+            //Docs at http://simpleweatherjs.com
+            
+            $(document).ready(function() {  
+                getWeather(); //Get the initial weather.
+                setInterval(getWeather, 100); //Update the weather every 10 minutes.
+            });
+            function getWeather(){
+              $.simpleWeather({
+                location: 'Wellesley, MA',
+                unit: 'f',
+                success: function(weather) {
+                  html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+                  html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+                  html += '<li class="currently">'+weather.currently+'</li>';
+                  html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+                    
+                    htmll = "";
+                  for(var i=0;i<weather.forecast.length;i++) {
+                    htmll += '<li>'+weather.forecast[i].day+': '+weather.forecast[i].high+'</li>';
+                  }
+
+                  $("#weather").html(html);
+                  $("#forcast").html(htmll);
+                },
+                error: function(error) {
+                  console.log(error);
+                }
+              });
+            };
+        </script>
     </head>
     <body onload="startTime()">
         <noscript>
             <h1>Y U NO HAV JAVASCRIPT</h1>
             <meme></meme>
         </noscript>
-    
         
         <div id="content">
-            THIS IS UN TEST
             <table>
                 <tr>
                     <td id="clock"></td>
                 </tr>
+            </table>
+            <table>
                 <tr>
-                    <td id="date">date</td>
+                    <td id="date"></td>
+                    <td id="weather">Hi</td>
                 </tr>
+            </table>
+            <table>
                 <tr>
-                    <td id="wheather">WHEATHER</td>
-                </tr>
-                <tr>
-                     <td id="forcast">forcast</td>
-                </tr>
-                <tr>
-                     <td id="stocks">stocks</td>
+                     <td><ul id="forcast">
+                         
+                     </ul></td>
                 </tr>
             </table>
         </div>
